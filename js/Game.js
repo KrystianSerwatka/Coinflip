@@ -8,7 +8,7 @@ class Game {
         this.playerCoin = e.dataset.option;
         this.coinChoose.forEach((i) => {
           i.style.boxShadow = "";
-          i.style.borderRadius = "0%";
+          i.style.borderRadius = "";
         });
         e.style.boxShadow = "gold 0px 0px 20px 3px";
         e.style.borderRadius = "50%";
@@ -23,9 +23,9 @@ class Game {
         this.playerDeposit = e.dataset.option;
         this.depositeChoose.forEach((i) => {
           i.style.boxShadow = "";
-          i.style.color = "white";
-          i.style.background = "transparent";
-          i.style.borderRadius = "0%";
+          i.style.color = "";
+          i.style.background = "";
+          i.style.borderRadius = "";
         });
         e.style.boxShadow = "gold 0px 0px 20px 3px";
         e.style.color = "black";
@@ -53,6 +53,7 @@ class Game {
     return this.playerDeposit;
   }
 
+  // Value of choose deposit
   // const getElementValue = document.querySelector(".choosemoney p").innerHTML;
 
   render() {
@@ -64,18 +65,55 @@ class Game {
     }
   }
 
+  endGame() {
+    const playerChooseUncheck = document.querySelector(
+      `[data-option="${this.playerCoin}"]`
+    );
+    if (playerChooseUncheck) {
+      playerChooseUncheck.style.boxShadow = "";
+      playerChooseUncheck.style.borderRadius = "";
+      this.playerCoin = "";
+    }
+
+    const playerDepositUncheck = document.querySelector(
+      `[data-option="${this.playerDeposit}"]`
+    );
+
+    if (playerDepositUncheck) {
+      playerDepositUncheck.style.boxShadow = "";
+      playerDepositUncheck.style.color = "";
+      playerDepositUncheck.style.background = "";
+      playerDepositUncheck.style.borderRadius = "";
+      this.playerDeposit = "";
+    }
+
+    this.inputBid.value = "";
+  }
+
   startGame() {
     if (
-      Number(this.inputBid.value) === 0 ||
-      this.inputBid.value === "" ||
-      this.getDepositChoose === ""
+      (!(Number(this.inputBid.value) === 0) &&
+        !(this.inputBid.value === "") &&
+        !(this.playerCoin === "")) ||
+      (!(this.playerDeposit === "") && !(this.playerCoin === ""))
     ) {
+      if (
+        !(this.playerCoin === "") &&
+        !(this.playerDeposit === "") &&
+        !(Number(this.inputBid.value) === 0)
+      ) {
+        this.endGame();
+        return alert(
+          "Nie możesz jednocześnie zaznaczyć depozytu oraz wpisać własnej wartości!"
+        );
+      }
+      alert("działa!");
+      this.endGame();
+    } else {
+      this.endGame();
       return alert(
-        "Wprowadziłeś nieprawidłową wartość lub nie wybrałeś wartości do gry"
+        "Proszę wybrać rodzaj coina, zaznaczyć kwotę lub wpisać ręcznie!"
       );
-    }
-    if (this.inputBid.value < wallet.getWalletValue) {
-      return alert("Masz za mało środków");
     }
   }
 }
