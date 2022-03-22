@@ -43,6 +43,15 @@ class Game {
     this.spanGames = document.querySelector(
       ".walletstats .games .test"
     ).innerHTML;
+
+    this.inputValueInDollar = document.querySelector(".input-group-text");
+    this.inputValueInDollar.innerHTML = `${0}$`;
+
+    document.body.addEventListener("input", () => {
+      this.inputValueInDollar.innerHTML = `${Math.floor(
+        Number(this.inputBid.value)
+      )}$`;
+    });
   }
 
   getCoinChoose() {
@@ -88,6 +97,7 @@ class Game {
     }
 
     this.inputBid.value = "";
+    this.inputValueInDollar.innerHTML = `${0}$`;
   }
 
   startGame() {
@@ -107,7 +117,8 @@ class Game {
           "Nie możesz jednocześnie zaznaczyć depozytu oraz wpisać własnej wartości!"
         );
       }
-      alert("działa!");
+      this.wallet = new Wallet();
+      this.wallet.addLastCoinflips(10, 20, 30);
       this.endGame();
     } else {
       this.endGame();
