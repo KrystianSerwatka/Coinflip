@@ -1,5 +1,8 @@
 class Game {
   constructor(start) {
+    this.wallet = new Wallet(start);
+    this.stats = new Statistics();
+
     this.playerCoin = "";
     this.coinChoose = [...document.querySelectorAll(".choosewrapper img")];
 
@@ -15,12 +18,35 @@ class Game {
       })
     );
 
+    this.fiveValueDeposite = Number(document.getElementById("5").textContent);
+    this.tenValueDeposite = Number(document.getElementById("10").textContent);
+    this.twentyValueDeposite = Number(
+      document.getElementById("20").textContent
+    );
+    this.fiftyValueDeposite = Number(document.getElementById("50").textContent);
+    this.hundredValueDeposite = Number(
+      document.getElementById("100").textContent
+    );
+
     this.playerDeposit = "";
+    this.playerDepositValue = "";
     this.depositeChoose = [...document.querySelectorAll(".choosemoney p")];
 
     this.depositeChoose.forEach((e) =>
       e.addEventListener("click", () => {
         this.playerDeposit = e.dataset.option;
+        this.playerDepositValue = e.dataset.option;
+        if (this.playerDepositValue === "five") {
+          this.playerDepositValue = this.fiveValueDeposite;
+        } else if (this.playerDepositValue === "ten") {
+          this.playerDepositValue = this.tenValueDeposite;
+        } else if (this.playerDepositValue === "twenty") {
+          this.playerDepositValue = this.twentyValueDeposite;
+        } else if (this.playerDepositValue === "fifty") {
+          this.playerDepositValue = this.fiftyValueDeposite;
+        } else if (this.playerDepositValue === "hundred") {
+          this.playerDepositValue = this.hundredValueDeposite;
+        }
         this.depositeChoose.forEach((i) => {
           i.style.boxShadow = "";
           i.style.color = "";
@@ -40,10 +66,6 @@ class Game {
 
     this.inputBid = document.getElementById("bid");
 
-    this.spanGames = document.querySelector(
-      ".walletstats .games .test"
-    ).innerHTML;
-
     this.inputValueInDollar = document.querySelector(".input-group-text");
     this.inputValueInDollar.innerHTML = `${0}$`;
 
@@ -52,6 +74,13 @@ class Game {
         Number(this.inputBid.value)
       )}$`;
     });
+
+    this.spanWalletMoney = document.querySelector("p.money span");
+    this.spanWalletGames = document.querySelector("p.games span");
+
+    this.resultStatus = document.getElementById("result");
+
+    this.render();
   }
 
   getCoinChoose() {
@@ -65,13 +94,16 @@ class Game {
   // Value of choose deposit
   // const getElementValue = document.querySelector(".choosemoney p").innerHTML;
 
-  render() {
-    this.draw = new Draw();
-    if (Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())) {
-      console.log("Wygrałeś!");
-    } else {
-      console.log("Przegrałeś!");
-    }
+  render(
+    money = this.wallet.getWalletValue(),
+    stats = [0, 0, 0],
+    bid = 0,
+    profit = 0,
+    choice = "",
+    salary = this.wallet.getWalletValue()
+  ) {
+    this.spanWalletMoney.textContent = money;
+    this.spanWalletGames.textContent = stats[0];
   }
 
   endGame() {
@@ -87,6 +119,8 @@ class Game {
     const playerDepositUncheck = document.querySelector(
       `[data-option="${this.playerDeposit}"]`
     );
+
+    console.log(playerDepositUncheck);
 
     if (playerDepositUncheck) {
       playerDepositUncheck.style.boxShadow = "";
@@ -117,8 +151,44 @@ class Game {
           "Nie możesz jednocześnie zaznaczyć depozytu oraz wpisać własnej wartości!"
         );
       }
-      this.wallet = new Wallet();
-      this.wallet.addLastCoinflips(10, 20, 30);
+
+      const bid = Math.floor(Number(this.inputBid.value));
+
+      if (!this.wallet.checkCanPlay(bid)) {
+        this.endGame();
+        return alert("Masz za mało środków do gry!");
+      }
+
+      this.wallet.addLastCoinflips(
+        this.playerDepositValue,
+        20,
+        this.wallet.getWalletValue(),
+        this.playerCoin
+      );
+
+      this.draw = new Draw();
+      if (Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())) {
+        this.resultStatus.textContent = "Wygrałeś";
+        document.querySelector("p.bet").style.color = "green";
+        document.querySelector("p.profit").style.color = "green";
+        document.querySelector("p.salary").style.color = "green";
+        document.querySelector("p.choice").style.color = "green";
+      } else {
+        this.resultStatus.textContent = "Przegrałeś";
+        document.querySelector("p.bet").style.color = "red";
+        document.querySelector("p.profit").style.color = "red";
+        document.querySelector("p.salary").style.color = "red";
+        document.querySelector("p.choice").style.color = "red";
+      }
+
+      this.render(
+        this.wallet.getWalletValue(),
+        this.stats.addGameToStatistics(),
+        this.playerDepositValue,
+        profit,
+        this.playerCoin,
+        this.wallet.getWalletValue()
+      );
       this.endGame();
     } else {
       this.endGame();
@@ -129,4 +199,4 @@ class Game {
   }
 }
 
-const game = new Game();
+const game = new Game(200);

@@ -39,7 +39,7 @@
                         </div>
                         <div class="walletstats">
                             <p class="money">Money: <span>0</span>$</p>
-                            <p class="games">Games played: <span class="test"></span></p>
+                            <p class="games">Games played: <span></span></p>
                         </div>
                         <div class="lastcoinflipstitle">
                             <h3>Your last coinflips</h3>
@@ -57,6 +57,10 @@
                                 <p>Salary</p>
                                 <div class="salary"></div>
                             </div>
+                            <div class="fourcolumn">
+                                <p>Your Choice</p>
+                                <div class="choice"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -66,6 +70,7 @@
                     <div class="text-center">
                         <div class="d-flex justify-content-center">
                             <div id="coin" class=''>
+                                <span id="result"></span>
                                 <div id="heads" data-option="headsAnimation" class="heads"></div>
                                 <div id="tails" data-option="tailsAnimation" class="tails"></div>
                             </div>
@@ -87,11 +92,11 @@
                             <div class="choosemoney col-lg-12">
                                 <h3>Deposit: </h3>
                                 <div class="row justify-content-center">
-                                    <p data-option="five" class="five">5$</p>
-                                    <p data-option="ten" class="ten">10$</p>
-                                    <p data-option="twenty" class="twenty">20$</p>
-                                    <p data-option="fifty" class="fifty">50$</p>
-                                    <p data-option="hundred" class="hundred">100$</p>
+                                    <p data-option="five" class="five"><span id="5">5</span>$</p>
+                                    <p data-option="ten" class="ten"><span id="10">10</span>$</p>
+                                    <p data-option="twenty" class="twenty"><span id="20">20</span>$</p>
+                                    <p data-option="fifty" class="fifty"><span id="50">50</span>$</p>
+                                    <p data-option="hundred" class="hundred"><span id="100">100</span>$</p>
                                 </div>
                             </div>
                                 <div class="input-group col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">

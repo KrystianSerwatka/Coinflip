@@ -7,6 +7,7 @@ class Wallet {
     this.firstColumn = document.querySelector("div.bet");
     this.secondColumn = document.querySelector("div.profit");
     this.thirdColumn = document.querySelector("div.salary");
+    this.fourColumn = document.querySelector("div.choice");
 
     this.lastBet = document.querySelector("p.bet");
     this.lastProfit = document.querySelector("p.profit");
@@ -27,14 +28,14 @@ class Wallet {
         if (type === "-") {
           return (_money -= value);
         }
-        throw new Error("nieprawidłowy typ działania");
+        throw new Error("Nieprawidłowy typ działania");
       } else {
-        throw new Error("nieprawidłowa liczba");
+        throw new Error("Nieprawidłowa liczba");
       }
     };
   }
 
-  addLastCoinflips(bid, profit, money) {
+  addLastCoinflips(bid, profit, money, choice) {
     const addParagraphBet = document.createElement("p");
     addParagraphBet.className = "bet";
     addParagraphBet.innerHTML = `${bid}$`;
@@ -56,20 +57,28 @@ class Wallet {
 
     this.list.push(addParagraphSalary);
 
-    console.log(this.list);
+    const addParagraphChoice = document.createElement("p");
+    addParagraphChoice.className = "choice";
+    addParagraphChoice.innerHTML = `${choice}`;
+    this.fourColumn.prepend(addParagraphChoice);
+
+    this.list.push(addParagraphChoice);
 
     this.allElementsBet = document.querySelectorAll("p.bet");
     this.allElementsProfit = document.querySelectorAll("p.profit");
     this.allElementsSalary = document.querySelectorAll("p.salary");
+    this.allElementsChoice = document.querySelectorAll("p.choice");
 
     if (
       this.allElementsBet.length > 5 &&
       this.allElementsProfit.length > 5 &&
-      this.allElementsSalary.length > 5
+      this.allElementsSalary.length > 5 &&
+      this.allElementsChoice.length > 5
     ) {
       document.querySelector("p.bet:last-of-type").remove();
       document.querySelector("p.profit:last-of-type").remove();
       document.querySelector("p.salary:last-of-type").remove();
+      document.querySelector("p.choice:last-of-type").remove();
     }
   }
 }
