@@ -1,7 +1,9 @@
 class Result {
   static moneyWin(result, bid) {
-    if (result) return 2 * bid;
-    return 0;
+    if (result) {
+      return 2 * bid;
+    }
+    return bid;
   }
 
   static checkWinner(playerCoinChoose, drawResult) {

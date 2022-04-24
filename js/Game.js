@@ -91,19 +91,16 @@ class Game {
     return this.playerDeposit;
   }
 
-  // Value of choose deposit
-  // const getElementValue = document.querySelector(".choosemoney p").innerHTML;
-
   render(
-    money = this.wallet.getWalletValue(),
-    stats = [0, 0, 0],
     bid = 0,
     profit = 0,
     choice = "",
-    salary = this.wallet.getWalletValue()
+    salary = this.wallet.getWalletValue(),
+    money = this.wallet.getWalletValue(),
+    stats = 0
   ) {
     this.spanWalletMoney.textContent = money;
-    this.spanWalletGames.textContent = stats[0];
+    this.spanWalletGames.textContent = stats;
   }
 
   endGame() {
@@ -154,40 +151,69 @@ class Game {
 
       const bid = Math.floor(Number(this.inputBid.value));
 
-      if (!this.wallet.checkCanPlay(bid)) {
+      if (
+        !this.wallet.checkCanPlay(bid) ||
+        !this.wallet.checkCanPlay(this.playerDepositValue)
+      ) {
         this.endGame();
         return alert("Masz za mało środków do gry!");
       }
 
+      this.draw = new Draw();
       this.wallet.addLastCoinflips(
         this.playerDepositValue,
-        20,
-        this.wallet.getWalletValue(),
+        Result.moneyWin(
+          Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
+          this.playerDepositValue
+        ),
+        this.wallet.changeWallet(
+          Result.moneyWin(
+            Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
+            this.playerDepositValue
+          ),
+          Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
+        ),
         this.playerCoin
       );
 
-      this.draw = new Draw();
       if (Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())) {
         this.resultStatus.textContent = "Wygrałeś";
         document.querySelector("p.bet").style.color = "green";
+        this.profitPlus = document.querySelector("p.profit");
+        const addPlusProfit = document.createElement("span");
+        addPlusProfit.textContent = "+";
+        this.profitPlus.prepend(addPlusProfit);
         document.querySelector("p.profit").style.color = "green";
         document.querySelector("p.salary").style.color = "green";
         document.querySelector("p.choice").style.color = "green";
       } else {
         this.resultStatus.textContent = "Przegrałeś";
         document.querySelector("p.bet").style.color = "red";
+        this.profitMinus = document.querySelector("p.profit");
+        const addMinusProfit = document.createElement("span");
+        addMinusProfit.textContent = "-";
+        this.profitMinus.prepend(addMinusProfit);
         document.querySelector("p.profit").style.color = "red";
         document.querySelector("p.salary").style.color = "red";
         document.querySelector("p.choice").style.color = "red";
       }
 
+      this.salary = document.querySelector("p.salary");
+
+      this.stats.addGameToStatistics(
+        Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
+      );
+
       this.render(
-        this.wallet.getWalletValue(),
-        this.stats.addGameToStatistics(),
         this.playerDepositValue,
-        profit,
+        Result.moneyWin(
+          Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
+          this.playerDepositValue
+        ),
         this.playerCoin,
-        this.wallet.getWalletValue()
+        this.salary,
+        this.wallet.getWalletValue(),
+        this.stats.showGameStatistics()
       );
       this.endGame();
     } else {

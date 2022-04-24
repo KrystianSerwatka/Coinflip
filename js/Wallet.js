@@ -16,21 +16,16 @@ class Wallet {
     this.getWalletValue = () => _money;
 
     this.checkCanPlay = (value) => {
-      if (_money > value) return true;
+      if (_money >= value) return true;
       return false;
     };
 
-    this.changeWallet = (value, type = "+") => {
+    this.changeWallet = (value, checkWinner) => {
       if (typeof value === "number" && !isNaN(value)) {
-        if (type === "+") {
+        if (checkWinner) {
           return (_money += value);
         }
-        if (type === "-") {
-          return (_money -= value);
-        }
-        throw new Error("Nieprawidłowy typ działania");
-      } else {
-        throw new Error("Nieprawidłowa liczba");
+        return (_money -= value);
       }
     };
   }
