@@ -2,14 +2,17 @@
 
 ### FRONT
 
-- [] Zimportwać wszystkie pliki do jednego - main.js
-- [] Wykonać animację żetonu
-- [] Stworzyć klasę Level
-- [] Stworzyć odpowiednie opóźnienie gry, wynik powinien być widoczny dopiero po zakończeniu animacji
 - [] Opisać zasady gry w panelu How to play
-- [] Przeanalizować kod oraz zoptymalizować go
+- [] Wykonać animację żetonu
+- [] Po wykonaniu animacji pokazuje się odpowiedni wynik wygranej(grafika coina)
+- [] Stworzyć odpowiednie opóźnienie gry, wynik powinien być widoczny dopiero po zakończeniu animacji
+- [] Stworzyć klasę Level
+- [] Dodać odpowiednie nagrody po zdobyciu danego level'a(zmiana tła, coinów itd.)
+- [] Dodać metodę, która będzie odpowiadać za pasek postępu w trybie live
+- [] Po osiągnięciu danego level'a, boks odpowiadający za dany level będzie posiadać animację, aby wyróżniał się od pozostałych
 - [] Przekazywanie value do Bet, wpisywanego ręcznie
-- [] Ustawić double click na depozyt, aby odklikać daną wartość i wprowadzić ręcznie
+- [] Przeanalizować kod oraz zoptymalizować go
+- [x] Ustawić double click na depozyt, aby odklikać daną wartość i wprowadzić ręcznie
 - [x] Przekazać dane do panelu(your wallet) po rozpoczęciu kliknięcia
 - [x] Odpowiednio skonfigurować metodę render()
 - [x] Odpowiednio pobierać wartości z depozytu

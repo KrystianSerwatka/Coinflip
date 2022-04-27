@@ -18,6 +18,14 @@ class Game {
       })
     );
 
+    this.coinChoose.forEach((e) =>
+      e.addEventListener("dblclick", () => {
+        this.playerCoin = "";
+        e.style.boxShadow = "";
+        e.style.borderRadius = "";
+      })
+    );
+
     this.fiveValueDeposite = Number(document.getElementById("5").textContent);
     this.tenValueDeposite = Number(document.getElementById("10").textContent);
     this.twentyValueDeposite = Number(
@@ -57,6 +65,17 @@ class Game {
         e.style.color = "black";
         e.style.background = "gold";
         e.style.borderRadius = "10%";
+      })
+    );
+
+    this.depositeChoose.forEach((e) =>
+      e.addEventListener("dblclick", () => {
+        this.playerDeposit = "";
+        this.playerDepositValue = "";
+        e.style.boxShadow = "";
+        e.style.color = "";
+        e.style.background = "";
+        e.style.borderRadius = "";
       })
     );
 
@@ -116,8 +135,6 @@ class Game {
     const playerDepositUncheck = document.querySelector(
       `[data-option="${this.playerDeposit}"]`
     );
-
-    console.log(playerDepositUncheck);
 
     if (playerDepositUncheck) {
       playerDepositUncheck.style.boxShadow = "";
