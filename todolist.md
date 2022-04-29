@@ -10,8 +10,8 @@
 - [] Dodać odpowiednie nagrody po zdobyciu danego level'a(zmiana tła, coinów itd.)
 - [] Dodać metodę, która będzie odpowiadać za pasek postępu w trybie live
 - [] Po osiągnięciu danego level'a, boks odpowiadający za dany level będzie posiadać animację, aby wyróżniał się od pozostałych
-- [] Przekazywanie value do Bet, wpisywanego ręcznie
 - [] Przeanalizować kod oraz zoptymalizować go
+- [x] Przekazywanie value do Bet, wpisywanego ręcznie
 - [x] Ustawić double click na depozyt, aby odklikać daną wartość i wprowadzić ręcznie
 - [x] Przekazać dane do panelu(your wallet) po rozpoczęciu kliknięcia
 - [x] Odpowiednio skonfigurować metodę render()

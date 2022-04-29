@@ -2,6 +2,7 @@ class Game {
   constructor(start) {
     this.wallet = new Wallet(start);
     this.stats = new Statistics();
+    this.draw = new Draw();
 
     this.playerCoin = "";
     this.coinChoose = [...document.querySelectorAll(".choosewrapper img")];
@@ -176,22 +177,69 @@ class Game {
         return alert("Masz za mało środków do gry!");
       }
 
-      this.draw = new Draw();
-      this.wallet.addLastCoinflips(
-        this.playerDepositValue,
-        Result.moneyWin(
-          Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
-          this.playerDepositValue
-        ),
-        this.wallet.changeWallet(
+      if (this.playerDeposit !== "") {
+        this.wallet.addLastCoinflips(
+          this.playerDepositValue,
           Result.moneyWin(
             Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
             this.playerDepositValue
           ),
-          Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
-        ),
-        this.playerCoin
-      );
+          this.wallet.changeWallet(
+            Result.moneyWin(
+              Result.checkWinner(
+                this.getCoinChoose(),
+                this.draw.getDrawResult()
+              ),
+              this.playerDepositValue
+            ),
+            Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
+          ),
+          this.playerCoin
+        );
+
+        this.render(
+          this.playerDepositValue,
+          Result.moneyWin(
+            Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
+            this.playerDepositValue
+          ),
+          this.playerCoin,
+          this.salary,
+          this.wallet.getWalletValue(),
+          this.stats.showGameStatistics()
+        );
+      } else if (Number(this.inputBid.value > 0)) {
+        this.wallet.addLastCoinflips(
+          Number(this.inputBid.value),
+          Result.moneyWin(
+            Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
+            Number(this.inputBid.value)
+          ),
+          this.wallet.changeWallet(
+            Result.moneyWin(
+              Result.checkWinner(
+                this.getCoinChoose(),
+                this.draw.getDrawResult()
+              ),
+              Number(this.inputBid.value)
+            ),
+            Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
+          ),
+          this.playerCoin
+        );
+
+        this.render(
+          Number(this.inputBid.value),
+          Result.moneyWin(
+            Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
+            Number(this.inputBid.value)
+          ),
+          this.playerCoin,
+          this.salary,
+          this.wallet.getWalletValue(),
+          this.stats.showGameStatistics()
+        );
+      }
 
       if (Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())) {
         this.resultStatus.textContent = "Wygrałeś";
@@ -221,17 +269,6 @@ class Game {
         Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
       );
 
-      this.render(
-        this.playerDepositValue,
-        Result.moneyWin(
-          Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult()),
-          this.playerDepositValue
-        ),
-        this.playerCoin,
-        this.salary,
-        this.wallet.getWalletValue(),
-        this.stats.showGameStatistics()
-      );
       this.endGame();
     } else {
       this.endGame();
