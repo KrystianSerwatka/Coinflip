@@ -25,4 +25,4 @@
 
 ### FILES
 
-- [] Uporządkowanie plików w projekcie
+- [x] Uporządkowanie plików w projekcie

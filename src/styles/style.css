@@ -229,7 +229,7 @@ h3 {
 }
 
 div.image {
-    background-image: url("Images/znak-zapytania.png");
+    background-image: url("/src/assets/img/znak-zapytania.png");
     background-size: auto;
     background-position: center;
 }
