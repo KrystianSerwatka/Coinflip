@@ -2,7 +2,6 @@ class Game {
   constructor(start) {
     this.wallet = new Wallet(start);
     this.stats = new Statistics();
-    this.draw = new Draw();
 
     this.playerCoin = "";
     this.coinChoose = [...document.querySelectorAll(".choosewrapper img")];
@@ -151,7 +150,7 @@ class Game {
 
   startGame() {
     if (
-      (!(Number(this.inputBid.value) === 0) &&
+      (!(Number(this.inputBid.value) <= 0) &&
         !(this.inputBid.value === "") &&
         !(this.playerCoin === "")) ||
       (!(this.playerDeposit === "") && !(this.playerCoin === ""))
@@ -159,7 +158,7 @@ class Game {
       if (
         !(this.playerCoin === "") &&
         !(this.playerDeposit === "") &&
-        !(Number(this.inputBid.value) === 0)
+        !(Number(this.inputBid.value) <= 0)
       ) {
         this.endGame();
         return alert(
@@ -176,6 +175,9 @@ class Game {
         this.endGame();
         return alert("Masz za mało środków do gry!");
       }
+
+      this.draw = new Draw();
+      this.salary = document.querySelector("p.salary");
 
       if (this.playerDeposit !== "") {
         this.wallet.addLastCoinflips(
@@ -262,8 +264,6 @@ class Game {
         document.querySelector("p.salary").style.color = "red";
         document.querySelector("p.choice").style.color = "red";
       }
-
-      this.salary = document.querySelector("p.salary");
 
       this.stats.addGameToStatistics(
         Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
