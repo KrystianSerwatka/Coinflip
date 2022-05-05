@@ -149,6 +149,20 @@ class Game {
   }
 
   startGame() {
+    const fourthParaghraphOfRules = document.querySelector(
+      ".howtoplaydesc p:nth-child(4)"
+    );
+    const thirdParaghraphOfRules = document.querySelector(
+      ".howtoplaydesc p:nth-child(3)"
+    );
+    const secondParaghraphOfRules = document.querySelector(
+      ".howtoplaydesc p:nth-child(2)"
+    );
+
+    fourthParaghraphOfRules.classList.remove("pulseAndShakeText");
+    thirdParaghraphOfRules.classList.remove("pulseAndShakeText");
+    secondParaghraphOfRules.classList.remove("pulseAndShakeText");
+
     if (
       (!(Number(this.inputBid.value) <= 0) &&
         !(this.inputBid.value === "") &&
@@ -161,9 +175,7 @@ class Game {
         !(Number(this.inputBid.value) <= 0)
       ) {
         this.endGame();
-        return alert(
-          "Nie możesz jednocześnie zaznaczyć depozytu oraz wpisać własnej wartości!"
-        );
+        return fourthParaghraphOfRules.classList.add("pulseAndShakeText");
       }
 
       const bid = Math.floor(Number(this.inputBid.value));
@@ -173,11 +185,15 @@ class Game {
         !this.wallet.checkCanPlay(this.playerDepositValue)
       ) {
         this.endGame();
-        return alert("Masz za mało środków do gry!");
+        return thirdParaghraphOfRules.classList.add("pulseAndShakeText");
       }
 
       this.draw = new Draw();
       this.salary = document.querySelector("p.salary");
+
+      this.stats.addGameToStatistics(
+        Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
+      );
 
       if (this.playerDeposit !== "") {
         this.wallet.addLastCoinflips(
@@ -265,16 +281,10 @@ class Game {
         document.querySelector("p.choice").style.color = "red";
       }
 
-      this.stats.addGameToStatistics(
-        Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
-      );
-
       this.endGame();
     } else {
       this.endGame();
-      return alert(
-        "Proszę wybrać rodzaj coina, zaznaczyć kwotę lub wpisać ręcznie!"
-      );
+      return secondParaghraphOfRules.classList.add("pulseAndShakeText");
     }
   }
 }
