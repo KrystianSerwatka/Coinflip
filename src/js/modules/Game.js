@@ -158,24 +158,35 @@ class Game {
     const secondParaghraphOfRules = document.querySelector(
       ".howtoplaydesc p:nth-child(2)"
     );
+    const fiveParaghraphOfRules = document.querySelector(
+      ".howtoplaydesc p:nth-child(5)"
+    );
 
     fourthParaghraphOfRules.classList.remove("pulseAndShakeText");
     thirdParaghraphOfRules.classList.remove("pulseAndShakeText");
     secondParaghraphOfRules.classList.remove("pulseAndShakeText");
+    fiveParaghraphOfRules.classList.remove("pulseAndShakeText");
 
     if (
-      (!(Number(this.inputBid.value) <= 0) &&
-        !(this.inputBid.value === "") &&
-        !(this.playerCoin === "")) ||
+      (!(this.inputBid.value === "") && !(this.playerCoin === "")) ||
       (!(this.playerDeposit === "") && !(this.playerCoin === ""))
     ) {
       if (
         !(this.playerCoin === "") &&
         !(this.playerDeposit === "") &&
-        !(Number(this.inputBid.value) <= 0)
+        !(this.inputBid.value === "")
       ) {
         this.endGame();
         return fourthParaghraphOfRules.classList.add("pulseAndShakeText");
+      }
+
+      if (
+        !(this.inputBid.value === "") &&
+        Number(this.inputBid.value) <= 0 &&
+        !(this.playerCoin === "")
+      ) {
+        this.endGame();
+        return fiveParaghraphOfRules.classList.add("pulseAndShakeText");
       }
 
       const bid = Math.floor(Number(this.inputBid.value));
