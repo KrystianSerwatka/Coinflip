@@ -1,0 +1,269 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' !important;
+    background: #1D2F40 !important;
+    color: #fff !important;
+}
+
+::selection {
+    color: black;
+    background: #fde02a;
+    /* WebKit/Blink Browsers */
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+}
+
+#result {
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    top: 40%;
+    right: 0;
+    background: yellow;
+    color: black;
+    text-shadow: red 0px 0px 5px;
+    width: 100%;
+}
+
+/* <!-- Your level text & Progress bar --> */
+
+.txtuserlvl p {
+    text-align: center;
+}
+
+/* <!-- Your level text & Progress bar end--> */
+
+/* <!-- Your wallet --> */
+
+.squareborder {
+    border: 1px solid white;
+    margin-top: 50px;
+    padding: 10px 20px;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.titlewallet h3 {
+    text-align: center;
+}
+
+.walletstats {
+    text-align: center;
+}
+
+.walletstats p {
+    display: inline-block;
+}
+
+.walletstats p.money {
+    margin-right: 250px;
+}
+
+.lastcoinflips {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* <!-- Your wallet end --> */
+
+/* <!-- How to play --> */
+
+.squareborder {
+    overflow-y: auto;
+}
+
+.howtoplaydesc p{
+    margin-bottom: 5px;
+}
+
+
+/* <!-- How to play end --> */
+
+/* <!-- Coin panel --> */
+
+/* Coin section */
+
+#coin {
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    margin: 2rem 0rem;
+    transform-style: preserve-3d;
+}
+
+#coin div {
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    background-size: contain;
+    position: absolute;
+}
+
+/* Coin section end */
+
+/* Animation */
+
+.heads {
+    background-image: url("https://en.numista.com/catalogue/photos/inde/2311-original.jpg");
+}
+
+.animate-heads {
+    animation: flipHeads 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flipHeads {
+    from {
+
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(1800deg);
+    }
+}
+
+.tails {
+    background-image: url("https://en.numista.com/catalogue/photos/inde/3165-original.jpg");
+    transform: rotateY(-180deg);
+}
+
+.animate-tails {
+    animation: flipTails 3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flipTails {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(1620deg);
+    }
+}
+
+/* Animation end */
+
+/* Button */
+
+.btnflipit {
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #39546d;
+    border: none;
+    box-shadow: inset 0 2em 2em #39546d;
+    border: 2px solid #162330;
+    color: white;
+}
+
+.btnflipit:hover,
+.btnflipit:active,
+.btnflipit:focus {
+    outline: none;
+}
+
+/* Button end */
+
+/* Choose section */
+
+.choose {
+    margin-top: 20px;
+    border: 1px solid white;
+    padding: 10px 0px;
+}
+
+.choosewrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Choose section end */
+
+/* <!-- Input $ --> */
+
+
+/* <!-- Input $ end --> */
+
+/* <!-- Choose money --> */
+
+.choosemoney h3 {
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
+.choosemoney p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+/* <!-- Choose money end --> */
+
+/* <!-- Coin panel end --> */
+
+/* <!-- Unlock your rewards --> */
+
+.yourrewards {
+    border: 1px solid white;
+    margin-top: 25px;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+}
+
+/* <!-- Level boxes --> */
+
+.box {
+    height: 100px;
+    width: 100px;
+    margin-right: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: top;
+    text-align: center;
+}
+
+div.image {
+    background-image: url(../assets/img/znak-zapytania.png);
+    background-size: auto;
+    background-position: center;
+}
+
+.wrapperbox p {
+    width: 100px;
+}
+
+/* <!-- Level boxes end --> */
+
+/* <!-- Unlock your rewards end --> */
+
+/* BOOTSTRAP */
+
+.form-control {
+    height: auto !important;
+}
+
+.form-control:focus {
+    border-color: currentColor !important;
+    box-shadow: 0 0 0 0.1rem #004085 !important;
+}
+
+.input-group {
+    margin-top: 15px;
+}
+
+/* BOOTSTRAP end */
