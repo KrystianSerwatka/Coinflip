@@ -127,6 +127,32 @@ class Game {
     this.spanWalletGames.textContent = stats;
   }
 
+  endGame() {
+    const playerChooseUncheck = document.querySelector(
+      `[data-option="${this.playerCoin}"]`
+    );
+    if (playerChooseUncheck) {
+      playerChooseUncheck.style.boxShadow = "";
+      playerChooseUncheck.style.borderRadius = "";
+      this.playerCoin = "";
+    }
+
+    const playerDepositUncheck = document.querySelector(
+      `[data-option="${this.playerDeposit}"]`
+    );
+
+    if (playerDepositUncheck) {
+      playerDepositUncheck.style.boxShadow = "";
+      playerDepositUncheck.style.color = "";
+      playerDepositUncheck.style.background = "";
+      playerDepositUncheck.style.borderRadius = "";
+      this.playerDeposit = "";
+    }
+
+    this.inputBid.value = "";
+    this.inputValueInDollar.innerHTML = `${0}$`;
+  }
+
   startGame() {
     const fourthParaghraphOfRules = document.querySelector(
       ".howtoplaydesc p:nth-child(4)"
