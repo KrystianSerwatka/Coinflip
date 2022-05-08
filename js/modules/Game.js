@@ -147,6 +147,7 @@ class Game {
       playerDepositUncheck.style.background = "";
       playerDepositUncheck.style.borderRadius = "";
       this.playerDeposit = "";
+      this.playerDepositValue = "";
     }
 
     this.inputBid.value = "";
