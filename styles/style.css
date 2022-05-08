@@ -69,6 +69,7 @@ h3 {
 .lastcoinflips {
     display: flex;
     justify-content: space-between;
+    text-align: center;
     margin-top: 25px;
 }
 
@@ -217,7 +218,6 @@ h3 {
 
 /* <!-- Input $ --> */
 
-
 /* <!-- Input $ end --> */
 
 /* <!-- Choose money --> */
@@ -284,10 +284,6 @@ div.image {
 .form-control:focus {
     border-color: currentColor !important;
     box-shadow: 0 0 0 0.1rem #004085 !important;
-}
-
-.input-group {
-    margin-top: 15px;
 }
 
 /* BOOTSTRAP end */
