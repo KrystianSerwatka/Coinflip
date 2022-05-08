@@ -1,3 +1,8 @@
+/* global Result */
+/* global Wallet */
+/* global Statistics */
+/* global  Draw */
+/* eslint no-param-reassign: "error" */
 class Game {
   constructor(start) {
     this.wallet = new Wallet(start);
@@ -120,32 +125,6 @@ class Game {
   ) {
     this.spanWalletMoney.textContent = money;
     this.spanWalletGames.textContent = stats;
-  }
-
-  endGame() {
-    const playerChooseUncheck = document.querySelector(
-      `[data-option="${this.playerCoin}"]`
-    );
-    if (playerChooseUncheck) {
-      playerChooseUncheck.style.boxShadow = "";
-      playerChooseUncheck.style.borderRadius = "";
-      this.playerCoin = "";
-    }
-
-    const playerDepositUncheck = document.querySelector(
-      `[data-option="${this.playerDeposit}"]`
-    );
-
-    if (playerDepositUncheck) {
-      playerDepositUncheck.style.boxShadow = "";
-      playerDepositUncheck.style.color = "";
-      playerDepositUncheck.style.background = "";
-      playerDepositUncheck.style.borderRadius = "";
-      this.playerDeposit = "";
-    }
-
-    this.inputBid.value = "";
-    this.inputValueInDollar.innerHTML = `${0}$`;
   }
 
   startGame() {
