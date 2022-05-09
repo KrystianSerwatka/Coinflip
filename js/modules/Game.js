@@ -297,7 +297,8 @@ class Game {
         document.querySelector("p.salary").style.color = "red";
         document.querySelector("p.choice").style.color = "red";
       }
-
+      this.level = new Level();
+      this.level.moneyLevel(this.wallet.getWalletValue());
       this.endGame();
     } else {
       this.endGame();
