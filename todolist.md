@@ -5,13 +5,14 @@
 - [] Wykonać animację żetonu
 - [] Po wykonaniu animacji pokazuje się odpowiedni wynik wygranej(grafika coina)
 - [] Stworzyć odpowiednie opóźnienie gry, wynik powinien być widoczny dopiero po zakończeniu animacji
-- [] Stworzyć klasę Level
+- [] Dodać odpowiednią animację, gdy osiągniemy daną kwotę, dzięki której odblokuje się nagroda
 - [] Dodać odpowiednie nagrody po zdobyciu danego level'a(zmiana tła, coinów itd.)
 - [] Dodać metodę, która będzie odpowiadać za pasek postępu w trybie live
 - [] Po osiągnięciu danego level'a, boks odpowiadający za dany level będzie posiadać animację, aby wyróżniał się od pozostałych
 - [] Zimportować wszystkie pliki z modułów do main.js
 - [] Poprawić stronę pod względem RWD oraz estetycznym
 - [] Przeanalizować kod oraz zoptymalizować go
+- [x] Stworzyć klasę Level
 - [x] Usunąć alerty, zastąpić je podkreśleniami w How to play
 - [x] Opisać zasady gry w panelu How to play
 - [x] Przekazywanie value do Bet, wpisywanego ręcznie
