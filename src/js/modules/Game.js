@@ -102,8 +102,6 @@ class Game {
     this.spanWalletMoney = document.querySelector("p.money span");
     this.spanWalletGames = document.querySelector("p.games span");
 
-    this.resultStatus = document.getElementById("result");
-
     this.render();
   }
 
@@ -208,6 +206,18 @@ class Game {
       this.draw = new Draw();
       this.salary = document.querySelector("p.salary");
 
+      const coinSection = document.querySelector(".coin");
+      coinSection.style.animation = "none";
+      if (this.draw.getDrawResult() === "heads") {
+        setTimeout(function () {
+          coinSection.style.animation = "spin-heads 3s forwards";
+        }, 100);
+      } else {
+        setTimeout(function () {
+          coinSection.style.animation = "spin-tails 3s forwards";
+        }, 100);
+      }
+
       this.stats.addGameToStatistics(
         Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())
       );
@@ -277,7 +287,6 @@ class Game {
       }
 
       if (Result.checkWinner(this.getCoinChoose(), this.draw.getDrawResult())) {
-        this.resultStatus.textContent = "Wygrałeś";
         document.querySelector("p.bet").style.color = "green";
         this.profitPlus = document.querySelector("p.profit");
         const addPlusProfit = document.createElement("span");
@@ -287,7 +296,6 @@ class Game {
         document.querySelector("p.salary").style.color = "green";
         document.querySelector("p.choice").style.color = "green";
       } else {
-        this.resultStatus.textContent = "Przegrałeś";
         document.querySelector("p.bet").style.color = "red";
         this.profitMinus = document.querySelector("p.profit");
         const addMinusProfit = document.createElement("span");
@@ -299,6 +307,7 @@ class Game {
       }
       this.level = new Level();
       this.level.moneyLevel(this.wallet.getWalletValue());
+
       this.endGame();
     } else {
       this.endGame();
